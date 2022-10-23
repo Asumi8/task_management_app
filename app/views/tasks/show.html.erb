@@ -1,0 +1,7 @@
+<h1>詳細</h1>
+
+<p><%= @task.title %></p>
+<p><%= @task.content %></p>
+
+<%= link_to "編集する", edit_task_path(@task.id) %> | 
+<%= link_to "戻る", tasks_path %> 

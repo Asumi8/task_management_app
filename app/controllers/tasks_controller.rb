@@ -10,9 +10,9 @@ class TasksController < ApplicationController
   end
 
   def create 
-    @task = Task.new
-    if @task.save(task_params) 
-      redirect_to  tasks_path
+    @task = Task.new(task_params) 
+    if @task.save
+      redirect_to tasks_path, notice: "タスクを作成しました！"
     else
       render :new
     end
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   def update 
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to tasks_path 
+      redirect_to tasks_path, notice: "タスクを編集しました！"
     else 
       render :edit
     end
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
   private 
 
   def task_params
-    params.require(:task).permit(:title,:content)
+    params.require(:task).permit(:title, :content)
   end
 
 end
