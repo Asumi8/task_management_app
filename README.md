@@ -5,21 +5,21 @@
 |  email  |  string  |
 |  password_digest  |  string  |
 
-# task テーブル
+# tasks テーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
 |  user_id  |    |
-|  task_name  |  string  |
+|  title  |  string  |
 |  content  |  text  |
 |  expiry_date  |  integer  |
 |  priority  |  string  |
 
-# label テーブル
+# labels テーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
 |  label_name  |  string  |
 
-#  label_management テーブル
+#  label_managements テーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
 |  task_id  |    |
