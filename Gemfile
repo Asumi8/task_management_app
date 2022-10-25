@@ -18,14 +18,15 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
-gem 'rexml' #追加
-
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'spring' #追加
+  gem 'rexml' #追加
+  gem 'rspec-rails' #追加
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -37,9 +38,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 
-  gem 'rspec-rails' #追加
   gem 'spring-commands-rspec'
-  gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
 end
@@ -47,7 +46,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
