@@ -1,13 +1,13 @@
-<h1>一覧</h1>
+<h1><%= t('view.index.name') %></h1>
 
 <p id="notice"><%= notice %></p>
 
-<p><%= link_to "新規作成", new_task_path %></p>
+<p><%= link_to t('view.new.name'), new_task_path %></p>
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Content</th>
+    <th><%= t('view.index.title') %></th>
+    <th><%= t('view.index.content') %></th>
   </tr>
 
   <% @tasks.each do |task| %>  
@@ -15,9 +15,9 @@
       <td><%= task.title %></td>
       <td><%= task.content %></td>
       <td>
-        <%= link_to "詳細", task_path(task.id) %>
-        <%= link_to "編集", edit_task_path(task.id) %>
-        <%= link_to "削除", task_path(task.id), method: :delete %>
+        <%= link_to t('view.show.name'), task_path(task.id) %>
+        <%= link_to t('view.edit.name'), edit_task_path(task.id) %>
+        <%= link_to t('view.destroy.name'), task_path(task.id), method: :delete %>
       </td>
     </tr>
   <% end %>  

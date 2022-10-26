@@ -1,7 +1,15 @@
-<h1>詳細</h1>
+<h1><%= t('view.show.name') %></h1>
 
-<p>Title<br><%= @task.title %></p>
-<p>Content<br><%= @task.content %></p>
+<p>
+  <strong><%= t('view.index.title') %></strong>
+  <br>
+  <%= @task.title %>
+</p>
+<p>
+  <strong><%= t('view.index.content') %></strong>
+  <br>
+  <%= @task.content %>
+</p>
 
-<%= link_to "編集する", edit_task_path(@task.id) %> | 
-<%= link_to "戻る", tasks_path %> 
+<%= link_to t('view.edit.name'), edit_task_path(@task.id) %> | 
+<%= link_to t('view.other.back'), tasks_path %> 
