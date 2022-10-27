@@ -18,6 +18,8 @@ module TaskManagementApp
                       routing_specs: false,
                       controller_specs: false,
                       request_specs: false
-    end 
+    end
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone= :local
   end
 end
