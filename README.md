@@ -14,7 +14,8 @@ tasks テーブル
 |  title  |  string  |
 |  content  |  text  |
 |  expired_at  |  date  |
-|  priority  |  string  |
+|  priority  |  integer  |
+|  status  |  integer  |
 
 # Label
 labels テーブル

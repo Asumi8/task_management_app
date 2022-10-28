@@ -8,6 +8,7 @@ ja:
       title: 'タイトル'
       content: '内容'
       expired: '終了期限'
+      search: '検索'
     new:
       name: '新規作成'
     edit:
@@ -18,7 +19,12 @@ ja:
       count: '件のエラーがあります'
     other:
       back: '戻る'
-
+  # enum:
+  #   task:
+  #     status:
+  #       not_start: '未着手'
+  #       start: '着手'
+  #       complete: '完了'
   activerecord:
     errors:
       messages:
