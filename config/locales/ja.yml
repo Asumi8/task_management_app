@@ -7,6 +7,7 @@ ja:
       name: 'タスク一覧'
       title: 'タイトル'
       content: '内容'
+      expired: '終了期限'
     new:
       name: '新規作成'
     edit:
