@@ -1,7 +1,7 @@
 <h1><%= t('view.index.name') %></h1>
 
 <p id="notice"><%= notice %></p>
-<%= form_with(url:tasks_path, local:true) do |form| %>
+<%= form_with(url:tasks_path, scope: :task, local:true, method: :get) do |form| %>
   <%= form.label :title %>
   <%= form.text_field :title %>
   <%= form.label :status %>
@@ -16,8 +16,9 @@
     <th><%= t('view.index.title') %></th>
     <th><%= t('view.index.content') %></th>
     <th>
-      <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true")%>
+      <%= link_to "終了期限", tasks_path(sort_expired: "true")%>
     </th>
+    <th><%= t('view.index.status') %></th>
   </tr>
 
   <% @tasks.each do |task|%>
@@ -25,6 +26,7 @@
       <td><%= task.title %></td>
       <td><%= task.content %></td>
       <td><%= task.expired_at %></td>
+      <td><%= task.status %></td>
       <td>
         <%= link_to t('view.show.name'), task_path(task.id) %>
         <%= link_to t('view.edit.name'), edit_task_path(task.id) %>
@@ -33,3 +35,5 @@
     </tr>
   <% end %>  
 </table>
+
+<p><%= link_to t('view.index.name'), tasks_path %></p>

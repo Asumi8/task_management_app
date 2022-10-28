@@ -21,6 +21,9 @@
   <%= form.label :expired_at %>
   <%= form.date_field :expired_at %>
 
+  <%= form.label :status %>
+  <%= form.select :status, Task.statuses.keys.to_a, include_blank: true %>
+
   <%= form.submit %>
 
 <% end %>
