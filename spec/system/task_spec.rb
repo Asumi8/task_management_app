@@ -8,16 +8,19 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
         visit new_task_path
-        fill_in "タイトル",	with: "書類作成" #STep3:終了期限の登録も追記
-        fill_in "内容",	with: "企画書を作成する" 
-        click_on "登録する" 
-        expect(page).to have_content "書類作成"
-        expect(page).to have_content "企画書を作成する" #STep3:終了期限の登録も追記
+        fill_in 'タイトル',	with: 'title_1'
+        fill_in '内容',	with: 'content_1'
+        fill_in '終了期限', with: Time.new(2022, 9, 1)
+        click_on '登録する'
+        expect(page).to have_content 'title_1'
+        expect(page).to have_content 'content_1'
+        expect(page).to have_content '2022-09-01'
       end
     end
   end
+
   describe '一覧表示機能' do
-    let!(:task) { FactoryBot.create(:task, title: '勉強', content:'Rubyを学ぶ') }
+    let!(:task) { FactoryBot.create(:task, title: '勉強', content:'Rubyを学ぶ', expired_at:'2022-09-01') } #3つ目の例
     before do
       visit tasks_path
     end
@@ -35,7 +38,17 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[2]).to have_content '書類作成'
       end
     end
+    context '終了期限でソートするというリンクを押した場合' do
+      it '終了期限の降順に並び替えられたタスク一覧が表示される' do
+        click_on '終了期限でソートする'
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content '書類作成'
+        expect(task_list[1]).to have_content 'メール送信'
+        expect(task_list[2]).to have_content '勉強'
+      end
+    end
   end
+
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
