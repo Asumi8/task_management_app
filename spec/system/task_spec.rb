@@ -8,11 +8,11 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
         visit new_task_path
-        fill_in "タイトル",	with: "書類作成" #ちゃんと表示されている通り、大文字で
-        fill_in "内容",	with: "企画書を作成する" #ちゃんと表示されている通り、大文字で
-        click_on "登録する" #showへのvisitは書かなくてOK？
+        fill_in "タイトル",	with: "書類作成" #STep3:終了期限の登録も追記
+        fill_in "内容",	with: "企画書を作成する" 
+        click_on "登録する" 
         expect(page).to have_content "書類作成"
-        expect(page).to have_content "企画書を作成する"
+        expect(page).to have_content "企画書を作成する" #STep3:終了期限の登録も追記
       end
     end
   end
@@ -39,10 +39,9 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
-        task = FactoryBot.create(:task, title:'書類作成', content:'企画書を作成する')
+        task = FactoryBot.create(:task)
         visit task_path(task.id)
         expect(page).to have_content '書類作成'
-        expect(page).to have_content "企画書を作成する"
       end
     end
   end

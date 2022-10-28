@@ -13,7 +13,7 @@ tasks テーブル
 |  user_id  |    |
 |  title  |  string  |
 |  content  |  text  |
-|  expiry_date  |  integer  |
+|  expired_at  |  integer  |
 |  priority  |  string  |
 
 # Label
