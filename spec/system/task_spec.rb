@@ -11,10 +11,12 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'タイトル',	with: 'title_1'
         fill_in '内容',	with: 'content_1'
         fill_in '終了期限', with: Time.new(2022, 9, 1)
+        fill_in 'ステータス', with: '完了'
         click_on '登録する'
         expect(page).to have_content 'title_1'
         expect(page).to have_content 'content_1'
         expect(page).to have_content '2022-09-01'
+        expect(page).to have_content '完了'
       end
     end
   end

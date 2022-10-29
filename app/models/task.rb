@@ -7,4 +7,9 @@ class Task < ApplicationRecord
     # t('enum.task.status.not_start'):0, 
     # t('enum.task.status.start'):1,
     # t('enum.task.status.complete'):2
+  scope :title_and_status_search, -> (title, status){where("title LIKE ?", "%#{title}%").where(status: status)}
+  scope :title_search, -> (title){ where("title LIKE ?", "%#{title}%") }
+  scope :status_search, -> (status){ where(status: status)}
+  scope :expired_list, -> { order(expired_at: :DESC) }
+  scope :created_list, -> { order(created_at: :DESC) }
 end

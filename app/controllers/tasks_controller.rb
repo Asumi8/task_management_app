@@ -2,18 +2,24 @@ class TasksController < ApplicationController
 
   def index
     if params[:task].present?
-      task_title = params[:task][:title]
+      params_title = params[:task][:title]
+      params_status = params[:task][:status]
       if params[:task][:title].present? && params[:task][:status].present?
-        @tasks = Task.where("title like ?", "%#{task_title}%").where(status: params[:task][:status])
+        # @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").where(status: params[:task][:status])
+        @tasks = Task.title_and_status_search(params_title,params_status)
       elsif params[:task][:title].present?
-        @tasks = Task.where("title like ?", "%#{task_title}%")
+        # @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%")
+        @tasks = Task.title_search(params_title)
       elsif params[:task][:status].present?
-        @tasks = Task.where(status: params[:task][:status])
+        # @tasks = Task.where(status: params[:task][:status])
+        @tasks = Task.status_search(params_status)
       end
     elsif params[:sort_expired].present?
-      @tasks = Task.all.order(expired_at: :DESC)
+      # @tasks = Task.all.order(expired_at: :DESC)
+      @tasks = Task.expired_list
     else
-      @tasks = Task.all.order(created_at: :DESC)
+      # @tasks = Task.all.order(created_at: :DESC)
+      @tasks = Task.created_list
     end
   end
 

@@ -10,9 +10,8 @@
 <% end %>
 
 <p><%= link_to t('view.new.name'), new_task_path %></p>
-
 <table>
-  <tr>-
+  <tr>
     <th><%= t('view.index.title') %></th>
     <th><%= t('view.index.content') %></th>
     <th>
@@ -20,7 +19,7 @@
     </th>
     <th><%= t('view.index.status') %></th>
   </tr>
-
+  
   <% @tasks.each do |task|%>
     <tr class = "task_row">
       <td><%= task.title %></td>
