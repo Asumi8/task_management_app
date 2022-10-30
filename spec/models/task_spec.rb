@@ -13,9 +13,9 @@ RSpec.describe 'タスクモデル機能', type: :model do
         expect(task).not_to be_valid
       end
     end
-    context 'タスクのタイトルと詳細に内容が記載されている場合' do
+    context 'タスクのタイトル、詳細、終了期限、ステータス、優先順位に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        task = Task.new(title:'成功テスト', content: '成功テスト') 
+        task = Task.new(title:'成功テスト', content: '成功テスト', expired_at: '2022-10-31', status:'着手', priority:'高') 
         #終了期限とステータスをモデルのバリデーションに含めるかどうか
         expect(task).to be_valid
       end

@@ -2,26 +2,21 @@ class TasksController < ApplicationController
 
   def index
     if params[:task].present?
-      params_title = params[:task][:title]
-      params_status = params[:task][:status]
-      if params[:task][:title].present? && params[:task][:status].present?
-        # @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").where(status: params[:task][:status])
-        @tasks = Task.title_and_status_search(params_title,params_status)
-      elsif params[:task][:title].present?
-        # @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%")
-        @tasks = Task.title_search(params_title)
-      elsif params[:task][:status].present?
-        # @tasks = Task.where(status: params[:task][:status])
-        @tasks = Task.status_search(params_status)
+      title = params[:task][:title]
+      status = params[:task][:status]
+      if title.present? && status.present?
+        @tasks = Task.page(params[:page]).title_and_status_search(title, status)
+      elsif title.present?
+        @tasks = Task.page(params[:page]).title_search(title)
+      elsif status.present?
+        @tasks = Task.page(params[:page]).status_search(status)
       end
     elsif params[:sort_expired].present?
-      # @tasks = Task.all.order(expired_at: :DESC)
-      @tasks = Task.expired_list
+      @tasks = Task.page(params[:page]).expired_list
     elsif params[:sort_priority].present?
-      @tasks = Task.priority_list
+      @tasks = Task.page(params[:page]).priority_list
     else
-      # @tasks = Task.all.order(created_at: :DESC)
-      @tasks = Task.created_list
+      @tasks = Task.page(params[:page]).created_list
     end
   end
 

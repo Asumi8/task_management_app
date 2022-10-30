@@ -12,21 +12,21 @@
     </div>
   <% end %>
 
-  <%= form.label :title %>
-  <%= form.text_field :title %>
+  <%= form.label :title %><br>
+  <%= form.text_field :title %><br>
 
-  <%= form.label :content %>
-  <%= form.text_field :content %>
+  <%= form.label :content %><br>
+  <%= form.text_field :content %><br>
 
-  <%= form.label :expired_at %>
-  <%= form.date_field :expired_at %>
+  <%= form.label :expired_at %><br>
+  <%= form.date_field :expired_at %><br>
 
-  <%= form.label :status %>
-  <%= form.select :status, Task.statuses.keys.to_a, include_blank: true %>
+  <%= form.label :status %><br>
+  <%= form.select :status, Task.statuses.keys.to_a, include_blank: true %><br>
 
-  <%= form.label :priority %>
-  <%= form.select :priority, Task.priorities.keys.to_a, include_blank: true %>
+  <%= form.label :priority %><br>
+  <%= form.select :priority, Task.priorities.keys.to_a, include_blank: true %><br>
 
-  <%= form.submit %>
+  <%= form.submit %><br>
 
 <% end %>

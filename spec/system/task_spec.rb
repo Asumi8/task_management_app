@@ -13,11 +13,13 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in '内容',	with: 'content_1'
         fill_in '終了期限', with: Time.new(2022, 8, 1)
         select '完了', from: 'ステータス'
+        select '高', from: '優先順位'
         click_on '登録する'
         expect(page).to have_content 'title_1'
         expect(page).to have_content 'content_1'
         expect(page).to have_content '2022-08-01'
         expect(page).to have_content '完了'
+        expect(page).to have_content '優先順位'
       end
     end
   end
@@ -40,14 +42,24 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[2]).to have_content '書類作成'
       end
     end
-    context '終了期限でソートするというリンクを押した場合' do
+    context '終了期限というリンクを押した場合' do
       it '終了期限の降順に並び替えられたタスク一覧が表示される' do
         click_on "終了期限"
         sleep(2) #sleepメソッドで2秒ほどプログラムを停止させる
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content '書類作成'
-        expect(task_list[1]).to have_content 'メール送信'
-        expect(task_list[2]).to have_content '勉強'
+        expect(task_list[0]).to have_content '2022-11-01'
+        expect(task_list[1]).to have_content '2022-10-01'
+        expect(task_list[2]).to have_content '2022-09-01'
+      end
+    end
+    context '優先順位というリンクを押した場合' do
+      it '優先順位の高い順に並び替えられたタスク一覧が表示される' do
+        click_on "優先順位"
+        sleep(2) #sleepメソッドで2秒ほどプログラムを停止させる
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content '高'
+        expect(task_list[1]).to have_content '中'
+        expect(task_list[2]).to have_content '低'
       end
     end
   end
@@ -68,22 +80,22 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context 'タイトルであいまい検索をした場合' do
       it "検索キーワードを含むタスクで絞り込まれる" do
-        fill_in 'Title',	with: '書類作成' #日本語変更？
+        fill_in 'task[title]',	with: '書類作成' #日本語変更？
         click_on "検索"
         expect(page).to have_content '書類作成'
       end
     end
     context 'ステータス検索をした場合' do
       it "ステータスに完全一致するタスクが絞り込まれる" do
-        select '着手', from: 'Status' #日本語変更？
+        select '着手', from: 'task[status]' #日本語変更？
         click_on "検索"
         expect('着手').to eq '着手' #変更
       end
     end
     context 'タイトルのあいまい検索とステータス検索をした場合' do
       it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスクが絞り込まれる" do
-        fill_in 'Title',	with: '勉強' #日本語変更？
-        select '完了', from: 'Status' #日本語変更？
+        fill_in 'task[title]',	with: '勉強' #日本語変更？
+        select '完了', from: 'task[status]' #日本語変更？
         click_on "検索"
         expect(page).to have_content '勉強'
         expect('完了').to eq '完了' #変更
