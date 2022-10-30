@@ -18,6 +18,9 @@
       <%= link_to "終了期限", tasks_path(sort_expired: "true")%>
     </th>
     <th><%= t('view.index.status') %></th>
+    <th>
+      <%= link_to "優先順位", tasks_path(sort_priority: "true")%>
+    </th>
   </tr>
   
   <% @tasks.each do |task|%>
@@ -26,6 +29,7 @@
       <td><%= task.content %></td>
       <td><%= task.expired_at %></td>
       <td><%= task.status %></td>
+      <td><%= task.priority %></td>
       <td>
         <%= link_to t('view.show.name'), task_path(task.id) %>
         <%= link_to t('view.edit.name'), edit_task_path(task.id) %>

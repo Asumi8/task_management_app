@@ -24,6 +24,9 @@
   <%= form.label :status %>
   <%= form.select :status, Task.statuses.keys.to_a, include_blank: true %>
 
+  <%= form.label :priority %>
+  <%= form.select :priority, Task.priorities.keys.to_a, include_blank: true %>
+
   <%= form.submit %>
 
 <% end %>
