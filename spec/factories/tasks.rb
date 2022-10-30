@@ -12,4 +12,11 @@ FactoryBot.define do
     expired_at {'2022-10-01'}
     status {'着手'}
   end
+  
+  factory :third_task, class: Task do #Taskはモデル
+    title { '勉強' }
+    content { 'Rubyを学ぶ'}
+    expired_at {'2022-09-01'}
+    status {'完了'}
+  end
 end
