@@ -27,6 +27,11 @@ ja:
       show:
         user_name: '名前'
         email: 'メールアドレス'
+    session:
+      new:
+        email: 'メールアドレス'
+        password: 'パスワード'
+        login: 'ログイン'
 
   # enum:
   #   task:
