@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  skip_before_action :forbid_login_user, only:[:index, :new, :create, :update, :show, :edit, :destroy]
+  skip_before_action :prohibit_access_to_other_users, only:[:index, :new, :create, :update, :show, :edit, :destroy]
 
   def index
     if params[:task].present?
@@ -26,7 +28,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to task_path(@task.id), notice: "タスクを作成しました！"
     else

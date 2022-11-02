@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
-  skip_before_action :login_required, only:[:new, :create]
-  
+  skip_before_action :login_required, only:[:new, :create, :destroy]
+  skip_before_action :forbid_login_user, only:[:new, :create, :destroy]
+  skip_before_action :prohibit_access_to_other_users, only:[:new, :create, :destroy]
+
   def new
   end
 
@@ -8,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to user_path(user.id)
+      redirect_to tasks_path
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render :new

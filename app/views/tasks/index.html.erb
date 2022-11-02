@@ -11,8 +11,10 @@
 <br>
 <p class= "btn btn-primary btn-sm"><%= link_to t('view.task.new.page_title'), new_task_path %></p>
 
+
 <table class="table">
   <tr>
+    <th><%= t('view.task.index.user_name') %></th>
     <th><%= t('view.task.index.title') %></th>
     <th><%= t('view.task.index.content') %></th>
     <th>
@@ -24,8 +26,11 @@
     </th>
   </tr>
   
-  <% @tasks.each do |task|%>
+
+<% @tasks.each do |task|%>
+  <% if task.user_id == @current_user.id %>
     <tr class = "task_row">
+      <td><%= task.user.name %></td>
       <td><%= task.title %></td>
       <td><%= task.content %></td>
       <td><%= task.expired_at %></td>
@@ -37,7 +42,9 @@
         <label class = "btn btn-danger btn-sm"><%= link_to t('view.task.destroy.page_title'), task_path(task.id), method: :delete %></label>
       </td>
     </tr>
-  <% end %>  
+  <% end %>
+<% end %>
+
 </table>
 
 <%= paginate @tasks %>

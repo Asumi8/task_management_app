@@ -9,6 +9,7 @@ ja:
       show:
         page_title: '詳細'
       index:
+        user_name: 'ユーザー名'
         page_title: 'タスク一覧'
         title: 'タイトル'
         content: '内容'
