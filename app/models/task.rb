@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   
   validates :title, presence: true, length:{in:1..75}
   validates :content, presence: true, length:{in:1..300}

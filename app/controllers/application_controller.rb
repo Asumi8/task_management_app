@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
+
   before_action :login_required
   before_action :forbid_login_user
   before_action :prohibit_access_to_other_users
+  
   private
 
   def login_required
