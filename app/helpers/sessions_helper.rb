@@ -6,13 +6,4 @@ module SessionsHelper
   def logged_in?
     current_user.present? #メソッドを使ってる
   end
-
-  # def current_admin?
-  #   if current_user.admin == true 
-  #     true
-  #   else 
-  #     false #メソッドを使ってる
-  #   end
-  #end
-
 end
