@@ -28,7 +28,7 @@
   
 
 <% @tasks.each do |task|%>
-  <% if task.user_id == @current_user.id %>
+  <% if task.user == @current_user %>
     <tr class = "task_row">
       <td><%= task.user.name %></td>
       <td><%= task.title %></td>

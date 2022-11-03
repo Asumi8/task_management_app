@@ -10,5 +10,28 @@
   <br>
   <%= @user.email %>
 </p>
+<p>
+  <strong><%= t('view.task.index.page_title') %></strong>
+  <br>
+
+<table class="table">
+  <tr>
+    <th><%= t('view.task.index.title') %></th>
+    <th><%= t('view.task.index.content') %></th>
+    <th><%= t('view.task.index.expired') %></th>
+    <th><%= t('view.task.index.status') %></th>
+    <th><%= t('view.task.index.priority') %></th>
+  </tr>
+
+  <% @tasks.each do |task|%>
+    <tr>
+    <td><%= task.title %></td>
+    <td><%= task.content %></td>
+    <td><%= task.expired_at %></td>
+    <td><%= task.status %></td>
+    <td><%= task.priority %></td>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to t('view.task.index.page_title'), tasks_path %>
