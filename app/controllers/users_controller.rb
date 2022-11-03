@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :login_required, only:[:new, :create]
   skip_before_action :forbid_login_user, only:[:show]
   skip_before_action :prohibit_access_to_other_users, only:[:new, :create]
+  skip_before_action :prohibit_access_except_admin, only:[:new, :create, :show]
 
 
   def  new
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
 end

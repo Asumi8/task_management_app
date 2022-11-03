@@ -11,4 +11,14 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <strong><%= t('view.user.show.admin') %></strong>
+  <br>
+  <%if @user.admin? %>
+    <p>あり</p>
+  <% else %>
+    <p>なし</p>
+  <% end %>
+</p>
+
 <%= link_to t('view.user.admin.index.page_title'), admin_users_path %>

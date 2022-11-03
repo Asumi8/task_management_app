@@ -36,6 +36,7 @@ ja:
       show:
         user_name: '名前'
         email: 'メールアドレス'
+        admin: '管理者権限'
     session:
       new:
         email: 'メールアドレス'

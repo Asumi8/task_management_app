@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :login_required
   before_action :forbid_login_user
   before_action :prohibit_access_to_other_users
+  before_action :prohibit_access_except_admin
   
   private
 
@@ -20,8 +21,15 @@ class ApplicationController < ActionController::Base
   end
 
   def prohibit_access_to_other_users
-    if @current_user.id != params[:id].to_i
+    if current_user.id != params[:id].to_i
       flash[:notice] = "アクセスできません"
+      redirect_to tasks_path
+    end
+  end
+
+  def prohibit_access_except_admin
+    unless current_user.admin?
+      flash[:notice] = "管理権限がありません"
       redirect_to tasks_path
     end
   end
