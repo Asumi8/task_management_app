@@ -42,6 +42,7 @@ ja:
         email: 'メールアドレス'
         password: 'パスワード'
         login: 'ログイン'
+        login_btn: 'ログインする'
 
   # enum:
   #   task:
