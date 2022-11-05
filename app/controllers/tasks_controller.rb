@@ -7,12 +7,17 @@ class TasksController < ApplicationController
     if params[:task].present?
       title = params[:task][:title]
       status = params[:task][:status]
+      label = params[:task][:label_id]
       if title.present? && status.present?
         @tasks = Task.page(params[:page]).title_and_status_search(title, status)
       elsif title.present?
         @tasks = Task.page(params[:page]).title_search(title)
       elsif status.present?
         @tasks = Task.page(params[:page]).status_search(status)
+      elsif label.present?
+        task_id = Labeling.where(label_id: label).pluck(:task_id)
+        @tasks = Task.page(params[:page]).where(id: task_id)
+        # @tasks = Task.page(params[:page]).label_search(label)
       end
     elsif params[:sort_expired].present?
       @tasks = Task.page(params[:page]).expired_list
@@ -63,7 +68,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status, :priority, :user_id)
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority, :user_id, label_ids: [])
   end
 
 end

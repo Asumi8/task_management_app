@@ -27,6 +27,13 @@
   <%= form.label :priority %><br>
   <%= form.select :priority, Task.priorities.keys.to_a, include_blank: true %><br>
 
+  <%= form.label :label %><br>
+  <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %><br>
+  <%# Label.all.each do |label| %>
+  <%#= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+  <%#= label.name %>
+  <%# end %>
+
   <%= form.submit %><br>
 
 <% end %>

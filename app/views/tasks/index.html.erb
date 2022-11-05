@@ -1,11 +1,13 @@
 <h1><%= t('view.task.index.page_title') %></h1>
 
-<p id="notice"><%= notice %></p>
 <%= form_with(url:tasks_path, scope: :task, local:true, method: :get) do |form| %>
   <%= form.label :title, t('view.task.index.title') %>
   <%= form.text_field :title %><br>
   <%= form.label :status, t('view.task.index.status') %>
   <%= form.select :status, Task.statuses.keys.to_a, include_blank: true %><br>
+  <%= form.label :label, t('view.task.index.label') %>
+  <%= form.select :label_id, Label.pluck(:name, :id), include_blank: true%><br>
+   <%#= f.select :person_id, Person.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
   <%= form.submit t('view.task.index.search')%>
 <% end %>
 <br>
@@ -24,6 +26,7 @@
     <th>
       <%= link_to "優先順位", tasks_path(sort_priority: "true")%>
     </th>
+    <th><%= t('view.task.index.label') %></th>
   </tr>
   
 
@@ -36,6 +39,11 @@
       <td><%= task.expired_at %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
+      <td>
+        <% task.labels.each do |label| %>
+          <%= label.name %>
+        <% end %>
+      </td>
       <td class = "btn">
         <label class = "btn btn-secondary btn-sm"><%= link_to t('view.task.show.page_title'), task_path(task.id) %></label>
         <label class = "btn btn-info btn-sm"><%= link_to t('view.task.edit.page_title'), edit_task_path(task.id) %></label>
