@@ -1,0 +1,32 @@
+<h1>サインアップ</h1>
+
+<%= form_with(model:@user, local:true) do |form| %>
+  <% if @user.errors.any? %>
+    <div id= "error_explanation">
+      <h2>
+        <%= @user.errors.count%>
+          <%= t('view.form.count') %>
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
+
+  <%= form.label :name %><br>
+  <%= form.text_field :name %><br>
+
+  <%= form.label :email %><br>
+  <%= form.email_field :email %><br>
+
+  <%= form.label :password %><br>
+  <%= form.password_field :password %><br>
+
+  <%= form.label :password_confirmation %><br>
+  <%= form.password_field :password_confirmation %><br>
+
+  <%= form.submit %><br>
+
+<% end %>

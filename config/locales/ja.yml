@@ -1,26 +1,49 @@
 ---
 ja:
   view:
-    show:
-      name: '詳細'
-    index:
-      name: 'タスク一覧'
-      title: 'タイトル'
-      content: '内容'
-      expired: '終了期限'
-      status: 'ステータス'
-      priority: '優先順位'
-      search: '検索'
-    new:
-      name: '新規作成'
-    edit:
-      name: '編集'
-    destroy:
-      name: '削除'
     form:
       count: '件のエラーがあります'
     other:
       back: '戻る'
+    task:
+      show:
+        page_title: '詳細'
+      index:
+        user_name: '名前'
+        page_title: 'タスク一覧'
+        title: 'タイトル'
+        content: '内容'
+        expired: '終了期限'
+        status: 'ステータス'
+        priority: '優先順位'
+        search: '検索'
+      new:
+        page_title: '新規作成'
+      edit:
+        page_title: '編集'
+      destroy:
+        page_title: '削除'
+    user:
+      admin:
+        index:
+          page_title: '管理者一覧'
+          new_user: 'ユーザーを新規作成'
+          user_name: '名前'
+          email: 'メールアドレス'
+          admin_authority: '管理者権限'
+          task_count: '登録タスク数'
+      new:
+      show:
+        user_name: '名前'
+        email: 'メールアドレス'
+        admin: '管理者権限'
+    session:
+      new:
+        email: 'メールアドレス'
+        password: 'パスワード'
+        login: 'ログイン'
+        login_btn: 'ログインする'
+
   # enum:
   #   task:
   #     status:

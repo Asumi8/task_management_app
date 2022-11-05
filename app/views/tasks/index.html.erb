@@ -1,48 +1,55 @@
-<h1><%= t('view.index.name') %></h1>
+<h1><%= t('view.task.index.page_title') %></h1>
 
 <p id="notice"><%= notice %></p>
 <%= form_with(url:tasks_path, scope: :task, local:true, method: :get) do |form| %>
-  <%= form.label :title, t('view.index.title') %>
+  <%= form.label :title, t('view.task.index.title') %>
   <%= form.text_field :title %><br>
-  <%= form.label :status, t('view.index.status') %>
+  <%= form.label :status, t('view.task.index.status') %>
   <%= form.select :status, Task.statuses.keys.to_a, include_blank: true %><br>
-  <%= form.submit t('view.index.search')%>
+  <%= form.submit t('view.task.index.search')%>
 <% end %>
 <br>
-<p class= "btn btn-primary btn-sm"><%= link_to t('view.new.name'), new_task_path %></p>
+<p class= "btn btn-primary btn-sm"><%= link_to t('view.task.new.page_title'), new_task_path %></p>
+
 
 <table class="table">
   <tr>
-    <th><%= t('view.index.title') %></th>
-    <th><%= t('view.index.content') %></th>
+    <th><%= t('view.task.index.user_name') %></th>
+    <th><%= t('view.task.index.title') %></th>
+    <th><%= t('view.task.index.content') %></th>
     <th>
       <%= link_to "終了期限", tasks_path(sort_expired: "true")%>
     </th>
-    <th><%= t('view.index.status') %></th>
+    <th><%= t('view.task.index.status') %></th>
     <th>
       <%= link_to "優先順位", tasks_path(sort_priority: "true")%>
     </th>
   </tr>
   
-  <% @tasks.each do |task|%>
+
+<% @tasks.each do |task|%>
+  <% if task.user == @current_user %>
     <tr class = "task_row">
+      <td><%= task.user.name %></td>
       <td><%= task.title %></td>
       <td><%= task.content %></td>
       <td><%= task.expired_at %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
       <td class = "btn">
-        <label class = "btn btn-secondary btn-sm"><%= link_to t('view.show.name'), task_path(task.id) %></label>
-        <label class = "btn btn-info btn-sm"><%= link_to t('view.edit.name'), edit_task_path(task.id) %></label>
-        <label class = "btn btn-danger btn-sm"><%= link_to t('view.destroy.name'), task_path(task.id), method: :delete %></label>
+        <label class = "btn btn-secondary btn-sm"><%= link_to t('view.task.show.page_title'), task_path(task.id) %></label>
+        <label class = "btn btn-info btn-sm"><%= link_to t('view.task.edit.page_title'), edit_task_path(task.id) %></label>
+        <label class = "btn btn-danger btn-sm"><%= link_to t('view.task.destroy.page_title'), task_path(task.id), method: :delete %></label>
       </td>
     </tr>
-  <% end %>  
+  <% end %>
+<% end %>
+
 </table>
 
 <%= paginate @tasks %>
 <br>
-<p class= "btn btn-primary"><%= link_to t('view.index.name'), tasks_path %></p>
+<p class= "btn btn-primary"><%= link_to t('view.task.index.page_title'), tasks_path %></p>
 
 <style>
 .btn a{
