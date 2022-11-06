@@ -6,7 +6,7 @@
   <%= form.label :status, t('view.task.index.status') %>
   <%= form.select :status, Task.statuses.keys.to_a, include_blank: true %><br>
   <%= form.label :label, t('view.task.index.label') %>
-  <%= form.select :label_id, Label.pluck(:name, :id), include_blank: true%><br>
+  <%= form.select :label_id, Label.pluck(:name, :id), include_blank: true , id: "label_btn"%><br>
    <%#= f.select :person_id, Person.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
   <%= form.submit t('view.task.index.search')%>
 <% end %>

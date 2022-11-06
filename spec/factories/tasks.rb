@@ -1,10 +1,14 @@
 FactoryBot.define do
   factory :task do
-    title { '書類作成' } #fakerの値を使うこともできる
-    content { '企画書を作成する' } 
-    expired_at {'2022-11-01'}
-    status {'未着手'}
-    priority {'低'}
+    sequence(:title) { '書類作成' } #fakerの値を使うこともできる
+    sequence(:content) { '企画書を作成する' } 
+    sequence(:expired_at) {'2022-11-01'}
+    sequence(:status) {'未着手'}
+    sequence(:priority) {'低'}
+
+    after(:build) do |task|
+      create_list(:labeling, 0, task: task, label: build(:label))
+    end
   end
 
   factory :second_task, class: Task do #Taskはモデル
@@ -13,6 +17,9 @@ FactoryBot.define do
     expired_at {'2022-10-01'}
     status {'着手'}
     priority {'高'}
+    after(:build) do |task|
+      create_list(:labeling, 0, task: task, label: build(:second_label))
+    end
   end
   
   factory :third_task, class: Task do #Taskはモデル
@@ -22,4 +29,6 @@ FactoryBot.define do
     status {'完了'}
     priority {'中'}
   end
+
+
 end
