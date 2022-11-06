@@ -6,7 +6,7 @@ FactoryBot.define do
     sequence(:status) {'未着手'}
     sequence(:priority) {'低'}
 
-    after(:build) do |task|
+    after(:create) do |task|
       create_list(:labeling, 0, task: task, label: build(:label))
     end
   end
@@ -17,7 +17,8 @@ FactoryBot.define do
     expired_at {'2022-10-01'}
     status {'着手'}
     priority {'高'}
-    after(:build) do |task|
+
+    after(:create) do |task|
       create_list(:labeling, 0, task: task, label: build(:second_label))
     end
   end

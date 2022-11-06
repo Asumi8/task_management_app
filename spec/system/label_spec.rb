@@ -59,7 +59,7 @@ RSpec.describe 'ラベル管理機能', type: :system do
       it "ラベルと一致するタスクが絞り込まれる" do
         select 'sample_2', from: 'task[label_id]' 
         click_on "検索"
-        expect(page).to have_content 'sample_2' #変更
+        expect(page).to have_content 'sample_2' 
       end
     end
   end
