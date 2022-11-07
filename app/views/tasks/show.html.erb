@@ -31,6 +31,13 @@
   <br>
   <%= @task.priority %>
 </p>
+<p>
+  <strong><%= t('view.task.index.label') %></strong>
+  <br>
+  <% @task.labels.each do |label| %>
+    <%= label.name %>
+  <% end %>
+</p>
 
 <%= link_to t('view.task.edit.page_title'), edit_task_path(@task.id) %> | 
 <%= link_to t('view.other.back'), tasks_path %> 

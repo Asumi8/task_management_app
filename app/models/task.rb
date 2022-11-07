@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :labelings, dependent: :destroy
+  has_many :labels, through: :labelings, source: :label
   
   validates :title, presence: true, length:{in:1..75}
   validates :content, presence: true, length:{in:1..300}
@@ -15,6 +17,9 @@ class Task < ApplicationRecord
   scope :title_and_status_search, -> (title, status){where("title LIKE ?", "%#{title}%").where(status: status)}
   scope :title_search, -> (title){ where("title LIKE ?", "%#{title}%") }
   scope :status_search, -> (status){ where(status: status)}
+  # scope :label_search, -> (label){ joins(:labels).where(labels: {id:label})}
+  # { joins(:labelings).where(labelings: label)}
+  # joins(:labels).where(labels: { id: params[:label_id] }) 
   scope :expired_list, -> { order(expired_at: :DESC) }
   scope :priority_list, -> { order(priority: :ASC ) }
   scope :created_list, -> { order(created_at: :DESC) }

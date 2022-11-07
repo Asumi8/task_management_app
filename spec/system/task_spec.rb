@@ -112,7 +112,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it "ステータスに完全一致するタスクが絞り込まれる" do
         select '着手', from: 'task[status]' 
         click_on "検索"
-        expect(page).to have_content '着手' #変更
+        expect(page).to have_content '着手' 
       end
     end
     context 'タイトルのあいまい検索とステータス検索をした場合' do
@@ -121,7 +121,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         select '完了', from: 'task[status]' 
         click_on "検索"
         expect(page).to have_content '勉強'
-        expect(page).to have_content '完了' #変更
+        expect(page).to have_content '完了' 
       end
     end
   end

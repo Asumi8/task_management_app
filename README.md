@@ -2,7 +2,7 @@
 users テーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
-|  user_name  |  string  |
+|  name  |  string  |
 |  email  |  string  |
 |  password_digest  |  string  |
 
@@ -21,10 +21,10 @@ tasks テーブル
 labels テーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
-|  label_name  |  string  |
+|  name  |  string  |
 
-# 　LabelManagement
-label_managements テーブル
+# 　Labeling
+labelings テーブル
 |  カラム名  |  データ型  |
 | ---- | ---- |
 |  task_id  |    |
